@@ -37,7 +37,7 @@ const App = () => {
   const [input, setInput] = useState("");
   const [completedTaskCount, setCompletedTaskCount] = useState(0);
   const [todoList, setTodoList] = useState([]);
-const handleClick = () => {
+  const handleClick = () => {
     const id = todoList.length + 1;
     setTodoList((prev) => [
       ...prev,
@@ -53,26 +53,26 @@ const handleClick = () => {
     let list = todoList.map((task) => {
       let item = {};
       if (task.id === id) {
-        if (!task.complete){
-            //Task is pending, modifying it to complete and increment the count
-            setCompletedTaskCount(completedTaskCount + 1);
-        } 
-        else {
-            //Task is complete, modifying it back to pending, decrement Complete count
-            setCompletedTaskCount(completedTaskCount - 1);
+        if (!task.complete) {
+          //Task is pending, modifying it to complete and increment the count
+          setCompletedTaskCount(completedTaskCount + 1);
         }
-item = { ...task, complete: !task.complete };
+        else {
+          //Task is complete, modifying it back to pending, decrement Complete count
+          setCompletedTaskCount(completedTaskCount - 1);
+        }
+        item = { ...task, complete: !task.complete };
       } else item = { ...task };
-return item;
+      return item;
     });
     setTodoList(list);
   };
-return (
+  return (
     <Container>
       <div>
-          <h2>Todo List</h2>
-          <Text value={input} onInput={(e) =>setInput(e.target.value)} />
-          <Button onClick={() => handleClick()}>Add</Button>
+        <h2>Todo List</h2>
+        <Text value={input} onInput={(e) => setInput(e.target.value)} />
+        <Button onClick={() => handleClick()}>Add</Button>
         <Tasks>
           <TaskCount>
             <b>Pending Tasks</b> {todoList.length - completedTaskCount}
@@ -86,7 +86,7 @@ return (
             {todoList.map((todo) => {
               return (
                 <LIST
-                  complete = {todo.complete}
+                  complete={todo.complete}
                   id={todo.id}
                   onClick={() => handleComplete(todo.id)}
                   style={{
